@@ -14,17 +14,48 @@ protected:
 	TValue val;
 public:
 	TRecord() {}
-	TRecord(TKey _key);
-	TRecord(TKey _key, TValue _val);
+	TRecord(TKey _key)
+	{
+		key = _key;
+	}
+	TRecord(TKey _key, TValue _val)
+	{
+		key = _key;
+		val = _val;
+	}
 
-	void SetKey(TKey _key);
-	TKey GetKey();
-	void SetValue(TValue _val);
-	TValue GetValue();
-	virtual bool operator==(const TRecord& rec);
-	virtual bool operator!=(const TRecord& rec);
-	virtual bool operator<(const TRecord& rec);
-	virtual bool operator>(const TRecord& rec);
+	void SetKey(TKey _key)
+	{
+		key = _key;
+	}
+	TKey GetKey()
+	{
+		return key;
+	}
+	void SetValue(TValue _val)
+	{
+		val = _val;
+	}
+	TValue GetValue()
+	{
+		return val;
+	}
+	virtual bool operator==(const TRecord& rec)
+	{
+		return key == rec.key;
+	}
+	virtual bool operator!=(const TRecord& rec)
+	{
+		return key != rec.key;
+	}
+	virtual bool operator<(const TRecord& rec)
+	{
+		return key < rec.key;
+	}
+	virtual bool operator>(const TRecord& rec)
+	{
+		return key > rec.key;
+	}
 
 	friend ostream& operator<<(ostream& os, const TRecord& rec)
 	{
@@ -34,54 +65,3 @@ public:
 	friend class TArrayTable;
 	friend class TScanTable;
 };
-
-TRecord::TRecord(TKey _key)
-{
-	key = _key;
-}
-
-TRecord::TRecord(TKey _key, TValue _val)
-{
-	key = _key;
-	val = _val;
-}
-
-void TRecord::SetKey(TKey _key)
-{
-	key = _key;
-}
-
-TKey TRecord::GetKey()
-{
-	return key;
-}
-
-void TRecord::SetValue(TValue _val)
-{
-	val = _val;
-}
-
-TValue TRecord::GetValue()
-{
-	return val;
-}
-
-bool TRecord::operator==(const TRecord& rec)
-{
-	return key == rec.key;
-}
-
-bool TRecord::operator!=(const TRecord& rec)
-{
-	return key != rec.key;
-}
-
-bool TRecord::operator<(const TRecord& rec)
-{
-	return key < rec.key;
-}
-
-bool TRecord::operator>(const TRecord& rec)
-{
-	return key > rec.key;
-}

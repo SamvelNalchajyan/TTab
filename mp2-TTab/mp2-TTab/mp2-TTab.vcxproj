@@ -142,11 +142,13 @@
     <ClCompile Include="ArrayTable.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ScanTable.cpp" />
+    <ClCompile Include="SortTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayTable.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="ScanTable.h" />
+    <ClInclude Include="SortTable.h" />
     <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
