@@ -1,6 +1,7 @@
 #include <iostream>
 #include <clocale>
 #include <cstdlib>
+#include "Table.h"
 
 using namespace std;
 
