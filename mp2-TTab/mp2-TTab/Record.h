@@ -65,4 +65,6 @@ public:
 	friend class TArrayTable;
 	friend class TScanTable;
 	friend class TSortTable;
+	friend class THashTable;
+	friend class TArrayHashTable;
 };
