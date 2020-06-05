@@ -32,4 +32,6 @@ public:
 	virtual int IsEnd() const;
 	virtual int GoNext();
 	virtual int SetCurrentPos(int pos);
+
+	friend class TSortTable;
 };
