@@ -67,4 +67,6 @@ public:
 	friend class TSortTable;
 	friend class THashTable;
 	friend class TArrayHashTable;
+	friend class TTreeNode;
+	friend class TTreeTable;
 };

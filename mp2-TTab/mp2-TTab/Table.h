@@ -53,7 +53,7 @@ public:
 
 	friend ostream& operator<<(ostream& os, TTable& tab)
 	{
-		os << "Table Printing" << endl;
+		os << "Table:" << endl;
 		for (tab.Reset(); !tab.IsEnd(); tab.GoNext())
 		{
 			os << "Key: " << tab.GetKey() << "   Value: " << tab.GetValue() << endl;

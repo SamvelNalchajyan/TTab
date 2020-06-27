@@ -145,6 +145,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ScanTable.cpp" />
     <ClCompile Include="SortTable.cpp" />
+    <ClCompile Include="TreeTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayHash.h" />
@@ -154,6 +155,8 @@
     <ClInclude Include="ScanTable.h" />
     <ClInclude Include="SortTable.h" />
     <ClInclude Include="Table.h" />
+    <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="TreeTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
