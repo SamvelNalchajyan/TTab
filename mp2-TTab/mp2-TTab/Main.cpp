@@ -8,49 +8,206 @@
 
 using namespace std;
 
+void TabMenu(TTable* table, int mode, int Count, int keys, int MemSize = TabMaxSize)
+{
+	TKey _key;
+	TValue _val;
+	switch (mode)
+	{
+	case 1:
+	{
+		table = new TScanTable(MemSize);
+		for (int i = 0; i < Count; i++)
+		{
+			_key = rand() % keys;
+			_val = "*";
+			_val += to_string(_key);
+			_val += "*";
+			table->InsRecord(_key, _val);
+		}
+		cout << *table << "*------------------*\n" << "Efficiency: " << table->GetEfficiency() << "\n*------------------*\n" << endl;
+		table->ClearEfficiency();
+		break;
+	}
+	case 2:
+	{
+		table = new TSortTable(MemSize);
+		for (int i = 0; i < Count; i++)
+		{
+			_key = rand() % keys;
+			_val = "*";
+			_val += to_string(_key);
+			_val += "*";
+			table->InsRecord(_key, _val);
+		}
+		cout << *table << "*------------------*\n" << "Efficiency: " << table->GetEfficiency() << "\n*------------------*\n" << endl;
+		table->ClearEfficiency();
+		break;
+	}
+	case 3:
+	{
+		table = new TArrayHashTable(MemSize);
+		for (int i = 0; i < Count; i++)
+		{
+			_key = rand() % keys;
+			_val = "*";
+			_val += to_string(_key);
+			_val += "*";
+			table->InsRecord(_key, _val);
+		}
+		cout << *table << "*------------------*\n" << "Efficiency: " << table->GetEfficiency() << "\n*------------------*\n" << endl;
+		table->ClearEfficiency();
+		break;
+	}
+	}
+	int op = 10;
+	cout << "Введите опреацию:" << endl;
+	while (op)
+	{
+		cout << "1 - поиск записи, 2 - вставка записи, 3 - удаление записи, 4 - печать таблицы, 0 - выход" << endl;
+		cin >> op;
+		if (op == 1)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			table->ClearEfficiency();
+			if (table->FindRecord(_Key))
+			{
+				cout << "Запись найдена" << endl << "Efficiency: " << table->GetEfficiency() << endl;
+			}
+			else
+			{
+				cout << "Запись отсутствует" << endl << "Efficiency: " << table->GetEfficiency() << endl;
+			}
+			table->ClearEfficiency();
+		}
+		if (op == 2)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			TValue _Val = "*";
+			_Val += to_string(_Key);
+			_Val += "*";
+			table->ClearEfficiency();
+			table->InsRecord(_Key, _Val);
+			cout << "Efficiency: " << table->GetEfficiency() << endl;
+			table->ClearEfficiency();
+		}
+		if (op == 3)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			table->ClearEfficiency();
+			table->DelRecord(_Key);
+			cout << "Efficiency: " << table->GetEfficiency() << endl;
+			table->ClearEfficiency();
+		}
+		if (op == 4)
+		{
+			cout << *table << endl;
+		}
+	}
+}
+
+void TreeTabMenu(TTreeTable* table, int Count, int keys)
+{
+	TKey _key;
+	TValue _val;
+	table = new TTreeTable();
+	for (int i = 0; i < Count; i++)
+	{
+		_key = rand() % keys;
+		_val = "*";
+		_val += to_string(_key);
+		_val += "*";
+		table->InsRecord(_key, _val);
+	}
+	cout << *table << "*------------------*\n" << "Efficiency: " << table->GetEfficiency() << "\n*------------------*\n" << endl;
+	table->ClearEfficiency();
+	int op = 10;
+	cout << "Введите опреацию:" << endl;
+	while (op)
+	{
+		cout << "1 - поиск записи, 2 - вставка записи, 3 - удаление записи, 4 - печать таблицы, 5 - печать таблицы ярусами, 0 - выход" << endl;
+		cin >> op;
+		if (op == 1)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			table->ClearEfficiency();
+			if (table->FindRecord(_Key))
+			{
+				cout << "Запись найдена" << endl << "Efficiency: " << table->GetEfficiency() << endl;
+			}
+			else
+			{
+				cout << "Запись отсутствует" << endl << "Efficiency: " << table->GetEfficiency() << endl;
+			}
+			table->ClearEfficiency();
+		}
+		if (op == 2)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			TValue _Val = "*";
+			_Val += to_string(_Key);
+			_Val += "*";
+			table->ClearEfficiency();
+			table->InsRecord(_Key, _Val);
+			cout << "Efficiency: " << table->GetEfficiency() << endl;
+			table->ClearEfficiency();
+		}
+		if (op == 3)
+		{
+			TKey _Key;
+			cout << "Введите ключ:" << endl;
+			cin >> _Key;
+			table->ClearEfficiency();
+			table->DelRecord(_Key);
+			cout << "Efficiency: " << table->GetEfficiency() << endl;
+			table->ClearEfficiency();
+		}
+		if (op == 4)
+		{
+			cout << *table << endl;
+		}
+		if (op == 5)
+		{
+			table->PrintTab();
+		}
+	}
+}
+
 int main()
 {
 	setlocale(LC_CTYPE, "Russian");
 	/*--------------------------------------------------*/
-	TScanTable table1;
-	TSortTable table2;
-	TArrayHashTable table3;
-	TTreeTable table4;
-	TKey k1 = 1, k2 = 2, k3 = 3, k4 = 4;
-	TValue v1 = "aaa", v2 = "bbb", v3 = "ccc", v4 = "ddd";
-	table1.InsRecord(k4, v4);
-	table2.InsRecord(k4, v4);
-	table3.InsRecord(k4, v4);
-	table4.InsRecord(k4, v4);
-	table1.InsRecord(k2, v2);
-	table2.InsRecord(k2, v2);
-	table3.InsRecord(k2, v2);
-	table4.InsRecord(k2, v2);
-	table1.InsRecord(k3, v3);
-	table2.InsRecord(k3, v3);
-	table3.InsRecord(k3, v3);
-	table4.InsRecord(k3, v3);
-	table1.InsRecord(k1, v1);
-	table2.InsRecord(k1, v1);
-	table3.InsRecord(k1, v1);
-	table4.InsRecord(k1, v1);
-	if (table1.FindRecord(k1) && table2.FindRecord(k1) && table3.FindRecord(k1) && table4.FindRecord(k1))
+	TTable* table = NULL;
+	TTreeTable* TreeTab = NULL;
+	int mode;
+	int Count;
+	int keys;
+	int MemSize = 0;
+	cout << "Введите тип таблицы:" << endl;
+	cout << "ScanTable - 1, SortTable - 2, ArrayHash - 3, TreeTable - 4" << endl;
+	cin >> mode;
+	if (mode != 4)
 	{
-		cout << "EZ!" << endl;
+		cout << "Введите:" << endl << "Количество записей, диапазон ключей, размер памяти" << endl;
+		cin >> Count >> keys >> MemSize;
+		TabMenu(table, mode, Count, keys, MemSize);
 	}
-	table1.DelRecord(k1);
-	table2.DelRecord(k1);
-	table3.DelRecord(k1);
-	table4.DelRecord(k1);
-	if (!table1.FindRecord(k1) && !table2.FindRecord(k1) && !table3.FindRecord(k1) && !table4.FindRecord(k1))
+	else
 	{
-		cout << "EEE" << endl;
+		cout << "Введите:" << endl << "Количество записей, диапазон ключей" << endl;
+		cin >> Count >> keys;
+		TreeTabMenu(TreeTab, Count, keys);
 	}
-	//cout << table1 << endl;
-	//cout << table2 << endl;
-	cout << table4 << endl;
-	table4.PrintTab();
-	table4.DrawTab();
 	/*--------------------------------------------------*/
 	system("pause");
 	return 0;
